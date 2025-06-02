@@ -2,16 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DTO;
+package Entidades;
 
 import Enumss.TipoOperacion;
 import java.time.LocalDateTime;
 
 /**
+ * Entidad Operacion que representa una operacion en el sistema bancario
  *
  * @author SDavidLedesma
  */
-public class OperacionDTO {
+public class Operacion {
 
     //Atributos
     private int id;
@@ -24,7 +25,7 @@ public class OperacionDTO {
     /**
      * constructor por omisino
      */
-    public OperacionDTO() {
+    public Operacion() {
     }
 
     /**
@@ -37,7 +38,7 @@ public class OperacionDTO {
      * @param idCuentaOrigen
      * @param idCuentaDestino
      */
-    public OperacionDTO(int id, TipoOperacion tipoOperacion, LocalDateTime fechaHora, double monto, int idCuentaOrigen, int idCuentaDestino) {
+    public Operacion(int id, TipoOperacion tipoOperacion, LocalDateTime fechaHora, double monto, int idCuentaOrigen, int idCuentaDestino) {
         this.id = id;
         this.tipoOperacion = tipoOperacion;
         this.fechaHora = fechaHora;
@@ -46,6 +47,22 @@ public class OperacionDTO {
         this.idCuentaDestino = idCuentaDestino;
     }
 
+    public Operacion(TipoOperacion tipoOperacion, LocalDateTime fechaHora, double monto, int idCuentaOrigen, int idCuentaDestino) {
+        this.tipoOperacion = tipoOperacion;
+        this.fechaHora = fechaHora;
+        this.monto = monto;
+        this.idCuentaOrigen = idCuentaOrigen;
+        this.idCuentaDestino = idCuentaDestino;
+    }
+
+    public Operacion(TipoOperacion tipoOperacion, LocalDateTime fechaHora, double monto) {
+        this.tipoOperacion = tipoOperacion;
+        this.fechaHora = fechaHora;
+        this.monto = monto;
+    }
+
+    
+    
     //getter y setter
     public int getId() {
         return id;

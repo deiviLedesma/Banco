@@ -1,1 +1,6 @@
-C:\Users\SDavidLedesma\Desktop\banco\Banco\Banco\Dominio\src\main\java\banco\dominio\Dominio.java
+C:\Users\SDavidLedesma\Desktop\banco\Banco\Banco\Dominio\src\main\java\DTO\ClienteDTO.java
+C:\Users\SDavidLedesma\Desktop\banco\Banco\Banco\Dominio\src\main\java\DTO\CuentaDTO.java
+C:\Users\SDavidLedesma\Desktop\banco\Banco\Banco\Dominio\src\main\java\DTO\OperacionDTO.java
+C:\Users\SDavidLedesma\Desktop\banco\Banco\Banco\Dominio\src\main\java\DTO\RetiroSinCuentaDTO.java
+C:\Users\SDavidLedesma\Desktop\banco\Banco\Banco\Dominio\src\main\java\Enumss\Estado.java
+C:\Users\SDavidLedesma\Desktop\banco\Banco\Banco\Dominio\src\main\java\Enumss\TipoOperacion.java

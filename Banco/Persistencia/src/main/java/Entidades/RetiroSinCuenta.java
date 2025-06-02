@@ -2,16 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DTO;
+package Entidades;
 
 import Enumss.Estado;
 import java.time.LocalDateTime;
 
 /**
+ * Entidad Retiro sin cuenta que representa un retiro sin cuenta del sistema
+ * bacnario
  *
  * @author SDavidLedesma
  */
-public class RetiroSinCuentaDTO {
+public class RetiroSinCuenta {
 
     //atributos
     private int folio;
@@ -25,7 +27,7 @@ public class RetiroSinCuentaDTO {
     /**
      * constructor por omision
      */
-    public RetiroSinCuentaDTO() {
+    public RetiroSinCuenta() {
     }
 
     /**
@@ -39,7 +41,7 @@ public class RetiroSinCuentaDTO {
      * @param idCliente
      * @param idOperacion
      */
-    public RetiroSinCuentaDTO(int folio, String contrasena, LocalDateTime fechaSolicitud, double monto, Estado estado, int idCliente, int idOperacion) {
+    public RetiroSinCuenta(int folio, String contrasena, LocalDateTime fechaSolicitud, double monto, Estado estado, int idCliente, int idOperacion) {
         this.folio = folio;
         this.contrasena = contrasena;
         this.fechaSolicitud = fechaSolicitud;

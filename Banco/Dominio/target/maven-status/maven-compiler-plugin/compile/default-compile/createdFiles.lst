@@ -1,1 +1,6 @@
-banco\dominio\Dominio.class
+Enumss\Estado.class
+DTO\ClienteDTO.class
+DTO\CuentaDTO.class
+Enumss\TipoOperacion.class
+DTO\OperacionDTO.class
+DTO\RetiroSinCuentaDTO.class

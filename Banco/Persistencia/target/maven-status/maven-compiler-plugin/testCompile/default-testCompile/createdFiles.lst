@@ -1,0 +1,4 @@
+DAO\CuentaDAOTest.class
+DAO\OperacionDAOTest.class
+DAO\ClienteDAOTest.class
+DAO\RetiroSinCuentaDAOTest.class

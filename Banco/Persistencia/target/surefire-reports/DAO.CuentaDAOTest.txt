@@ -1,0 +1,76 @@
+-------------------------------------------------------------------------------
+Test set: DAO.CuentaDAOTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 4, Skipped: 0, Time elapsed: 0.143 s <<< FAILURE! -- in DAO.CuentaDAOTest
+DAO.CuentaDAOTest.testActualizarSaldo -- Time elapsed: 0.061 s <<< ERROR!
+Excepcion.PersistenciaExcepcion: Error al insertar cuenta
+	at DAO.CuentaDAO.insertar(CuentaDAO.java:46)
+	at DAO.CuentaDAOTest.testActualizarSaldo(CuentaDAOTest.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '111111' for key 'cuentas.numero_cuenta'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:109)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:990)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1168)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1103)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1450)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1086)
+	at DAO.CuentaDAO.insertar(CuentaDAO.java:37)
+	... 4 more
+
+DAO.CuentaDAOTest.testCancelarCuenta -- Time elapsed: 0.026 s <<< ERROR!
+Excepcion.PersistenciaExcepcion: Error al insertar cuenta
+	at DAO.CuentaDAO.insertar(CuentaDAO.java:46)
+	at DAO.CuentaDAOTest.testCancelarCuenta(CuentaDAOTest.java:52)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '111111' for key 'cuentas.numero_cuenta'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:109)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:990)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1168)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1103)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1450)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1086)
+	at DAO.CuentaDAO.insertar(CuentaDAO.java:37)
+	... 4 more
+
+DAO.CuentaDAOTest.testBuscarCuentasPorCliente -- Time elapsed: 0.024 s <<< ERROR!
+Excepcion.PersistenciaExcepcion: Error al insertar cuenta
+	at DAO.CuentaDAO.insertar(CuentaDAO.java:46)
+	at DAO.CuentaDAOTest.testBuscarCuentasPorCliente(CuentaDAOTest.java:61)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '111111' for key 'cuentas.numero_cuenta'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:109)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:990)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1168)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1103)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1450)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1086)
+	at DAO.CuentaDAO.insertar(CuentaDAO.java:37)
+	... 4 more
+
+DAO.CuentaDAOTest.testInsertarYBuscar -- Time elapsed: 0.026 s <<< ERROR!
+Excepcion.PersistenciaExcepcion: Error al insertar cuenta
+	at DAO.CuentaDAO.insertar(CuentaDAO.java:46)
+	at DAO.CuentaDAOTest.testInsertarYBuscar(CuentaDAOTest.java:33)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '111111' for key 'cuentas.numero_cuenta'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:109)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:990)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1168)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1103)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1450)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1086)
+	at DAO.CuentaDAO.insertar(CuentaDAO.java:37)
+	... 4 more
+
