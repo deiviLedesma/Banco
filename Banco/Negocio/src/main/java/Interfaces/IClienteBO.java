@@ -4,8 +4,9 @@
  */
 package Interfaces;
 
-import Entidades.Cliente;
+import DTO.ClienteDTO;
 import NegocioException.NegocioException;
+import java.util.List;
 
 /**
  *
@@ -13,6 +14,11 @@ import NegocioException.NegocioException;
  */
 public interface IClienteBO {
 
-    Cliente registrarCliente(Cliente cliente) throws NegocioException;
+    ClienteDTO registrarCliente(ClienteDTO cliente) throws NegocioException;
 
+    ClienteDTO actualizarCliente(ClienteDTO cliente) throws NegocioException;
+
+    ClienteDTO buscarClientePorId(int id) throws NegocioException;
+
+    List<ClienteDTO> obtenerTodosLosClientes() throws NegocioException;
 }

@@ -14,6 +14,12 @@
             <artifactId>Persistencia</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.4</version>
+        </dependency>
+
     </dependencies>
     <properties>
         <exec.mainClass>banco.negocio.Negocio</exec.mainClass>
