@@ -15,8 +15,6 @@ import NegocioException.NegocioException;
 import Utilerias.Encriptador;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -24,32 +22,32 @@ import java.util.logging.Logger;
  */
 public class ClienteBO implements IClienteBO {
 
-    private final IClienteDAO clienteDAO;
+    final IClienteDAO clienteDAO;
 
     public ClienteBO() {
         this.clienteDAO = new ClienteDAO();
     }
 
+    // Constructor adicional para pruebas
+    public ClienteBO(IClienteDAO clienteDAO) {
+        this.clienteDAO = clienteDAO;
+    }
+
     @Override
     public ClienteDTO registrarCliente(ClienteDTO cliente) throws NegocioException {
-        // Validaciones lógicas
-        if (cliente.getNombreCompleto() == null || cliente.getContrasenia() == null) {
-            try {
-                throw new Exception("Nombre o contraseña no pueden estar vacíos.");
-            } catch (Exception ex) {
-                Logger.getLogger(ClienteBO.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+        validarCliente(cliente);
 
         // Encriptar contraseña antes de guardar
         cliente.setContrasenia(Encriptador.encriptar(cliente.getContrasenia()));
+
         Cliente entidad = ClienteConvertidor.dtoAEntidad(cliente);
         try {
             clienteDAO.insertar(entidad);
+            cliente.setId(entidad.getId()); // devolver con ID actualizado
+            return cliente;
         } catch (PersistenciaExcepcion ex) {
             throw new NegocioException("Error al registrar el cliente", ex);
         }
-        return cliente;
     }
 
     @Override
@@ -57,10 +55,10 @@ public class ClienteBO implements IClienteBO {
         Cliente entidad = ClienteConvertidor.dtoAEntidad(cliente);
         try {
             clienteDAO.actualizar(entidad);
+            return cliente;
         } catch (PersistenciaExcepcion ex) {
             throw new NegocioException("Error al actualizar el cliente", ex);
         }
-        return cliente;
     }
 
     @Override
@@ -69,7 +67,7 @@ public class ClienteBO implements IClienteBO {
             Cliente entidad = clienteDAO.buscarPorId(id);
             return ClienteConvertidor.entidadADTO(entidad);
         } catch (PersistenciaExcepcion ex) {
-            throw new NegocioException("Error al buscar el cliente por el id", ex);
+            throw new NegocioException("Error al buscar el cliente por ID", ex);
         }
     }
 
@@ -83,7 +81,57 @@ public class ClienteBO implements IClienteBO {
             }
             return dtos;
         } catch (PersistenciaExcepcion ex) {
-            throw new NegocioException("Error al buscar todos los clientes", ex);
+            throw new NegocioException("Error al obtener todos los clientes", ex);
         }
     }
+
+    /**
+     * Valida los datos del cliente.
+     */
+    private void validarCliente(ClienteDTO cliente) throws NegocioException {
+        if (cliente.getNombreCompleto() == null || cliente.getNombreCompleto().isBlank()) {
+            throw new NegocioException("El nombre completo es obligatorio.");
+        }
+        if (cliente.getContrasenia() == null || cliente.getContrasenia().isBlank()) {
+            throw new NegocioException("La contraseña es obligatoria.");
+        }
+        if (cliente.getEdad() < 18) {
+            throw new NegocioException("El cliente debe ser mayor de edad.");
+        }
+    }
+
+    /**
+     * Verifica las credenciales de un cliente por nombre y contraseña.
+     *
+     * @param nombreCompleto Nombre completo del cliente
+     * @param contrasena Texto plano ingresado
+     * @return ClienteDTO si las credenciales son correctas
+     * @throws NegocioException si las credenciales son inválidas o hay un error
+     */
+    public ClienteDTO loginCliente(String nombreCompleto, String contrasena) throws NegocioException {
+        if (nombreCompleto == null || nombreCompleto.isBlank()) {
+            throw new NegocioException("El nombre no puede estar vacío.");
+        }
+
+        if (contrasena == null || contrasena.isBlank()) {
+            throw new NegocioException("La contraseña no puede estar vacía.");
+        }
+
+        try {
+            Cliente cliente = clienteDAO.buscarPorNombre(nombreCompleto);
+            if (cliente == null) {
+                throw new NegocioException("Cliente no encontrado.");
+            }
+
+            if (!Encriptador.verificar(contrasena, cliente.getContrasenia())) {
+                throw new NegocioException("Contraseña incorrecta.");
+            }
+
+            return ClienteConvertidor.entidadADTO(cliente);
+
+        } catch (PersistenciaExcepcion e) {
+            throw new NegocioException("Error al iniciar sesión", e);
+        }
+    }
+
 }

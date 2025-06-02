@@ -30,18 +30,23 @@ public class CuentaBO implements ICuentaBO {
         this.cuentaDAO = new CuentaDAO();
     }
 
+    //constructor adicional para pruebas
+    public CuentaBO(ICuentaDAO cuentaDAO) {
+        this.cuentaDAO = cuentaDAO;
+    }
+
     @Override
     public CuentaDTO registrarCuenta(CuentaDTO cuenta) throws NegocioException {
-        if (cuenta.getIdCliente() <= 0 || cuenta.getSaldo() < 0) {
-            throw new NegocioException("Datos inválidos para la cuenta.");
-        }
+        validarCuenta(cuenta);
 
+        cuenta.setNumeroCuenta(generarNumeroCuentaUnico());
         cuenta.setFechaApertura(LocalDate.now());
         cuenta.setActiva(true);
 
         try {
             Cuenta entidad = CuentaConvertidor.dtoAEntidad(cuenta);
             cuentaDAO.insertar(entidad);
+            cuenta.setId(entidad.getId());
             return cuenta;
         } catch (PersistenciaExcepcion e) {
             throw new NegocioException("Error al registrar la cuenta.", e);
@@ -79,10 +84,42 @@ public class CuentaBO implements ICuentaBO {
                 dtos.add(CuentaConvertidor.entidadADTO(entidad));
             }
             return dtos;
-
         } catch (PersistenciaExcepcion ex) {
-            throw new NegocioException("Error al obtener cuentas por cliente");
+            throw new NegocioException("Error al obtener cuentas por cliente", ex);
         }
+    }
 
+    /**
+     * Valida los datos de la cuenta antes de su registro.
+     */
+    private void validarCuenta(CuentaDTO cuenta) throws NegocioException {
+        if (cuenta.getIdCliente() <= 0) {
+            throw new NegocioException("ID de cliente inválido.");
+        }
+        if (cuenta.getSaldo() < 0) {
+            throw new NegocioException("El saldo inicial no puede ser negativo.");
+        }
+        if (cuenta.getNumeroCuenta() != null) {
+            throw new NegocioException("El número de cuenta será generado automáticamente.");
+        }
+    }
+
+    /**
+     * Genera un número de cuenta aleatorio y único.
+     */
+    private String generarNumeroCuentaUnico() throws NegocioException {
+        int intentos = 0;
+        while (intentos < 10) {
+            String numero = String.format("%010d", (int) (Math.random() * 1_000_000_000));
+            try {
+                if (cuentaDAO.buscarPorNumeroCuenta(numero) == null) {
+                    return numero;
+                }
+            } catch (PersistenciaExcepcion e) {
+                throw new NegocioException("Error al verificar número de cuenta único.", e);
+            }
+            intentos++;
+        }
+        throw new NegocioException("No se pudo generar un número de cuenta único.");
     }
 }

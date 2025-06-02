@@ -21,4 +21,7 @@ public interface IClienteBO {
     ClienteDTO buscarClientePorId(int id) throws NegocioException;
 
     List<ClienteDTO> obtenerTodosLosClientes() throws NegocioException;
+
+    public ClienteDTO loginCliente(String nombreCompleto, String contrasena) throws NegocioException;
+
 }
